@@ -484,14 +484,7 @@ def live():
                         jobname = job_name(job)
                         if jobname == "static_tests":
                             failed_jobs = [ (filename, jobname) ] + failed_jobs
-
-                        elif nfailed <= maxfailed:
-                            failed_jobs.append((filename, job_name(job)))
-
-                        failed_jobs = failed_jobs[:maxfailed]
-
-                        if nfailed > maxfailed:
-                            failed_jobs.append((None, "(%s more failed jobs)" % (nfailed - maxfailed)))
+                        failed_jobs.append((filename, job_name(job)))
 
                 if _status.get("status", "") == "done":
                     post_status(None, prnum, failed_jobs, http_root)
